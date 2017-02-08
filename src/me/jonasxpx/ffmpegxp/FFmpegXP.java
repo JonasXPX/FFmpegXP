@@ -75,6 +75,11 @@ public class FFmpegXP {
 			cmd.add("16:9");
 			copyCodec = false;
 		}
+		if(m.getStreamAt(0).getWidth() >= 1900){
+			cmd.add("-vf");
+			cmd.add("scale=hd720");
+			copyCodec = false;
+		}
 		if(m.getStreamAt(1).getChannels() > 2){
 			cmd.add("-ac");
 			cmd.add("2");

@@ -4,12 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class FFmpegXP {
 
@@ -35,7 +33,7 @@ public class FFmpegXP {
 				public boolean accept(File f) {
 					if(f.getName().endsWith(".mp4") || f.getName().endsWith(".mkv") || f.getName().endsWith(".avi")){
 						try {
-							//if(Files.size(f.toPath()) > 10485760)
+							if(Files.size(f.toPath()) > 10485760)
 							files.add(f);
 						} catch (Exception e) {
 							e.printStackTrace();

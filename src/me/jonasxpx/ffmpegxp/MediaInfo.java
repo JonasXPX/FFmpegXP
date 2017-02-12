@@ -1,5 +1,7 @@
 package me.jonasxpx.ffmpegxp;
 
+import java.io.File;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,7 +18,7 @@ public class MediaInfo {
 		this.index = new JSONObject(json);
 		JSONObject format = index.getJSONObject("format");
 		this.streams = format.getInt("nb_streams");
-		this.bitrate = format.getLong("bit_rate");
+		this.bitrate = format.has("bit_rate") ? format.getLong("bit_rate") : -1;
 		this.size = format.getLong("size");
 		this.duration = format.getDouble("duration");
 		this.format_name = format.getString("format_name");
@@ -54,5 +56,10 @@ public class MediaInfo {
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+	
+	public static void main(String[] args) {
+		File f = new File("C:\\Users\\JonasXPX\\Desktop\\VIVO\\FORMULARIO.pdf");
+		System.out.println(f.getName());
 	}
 }
